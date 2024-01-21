@@ -2,7 +2,13 @@ const express = require('express')
 const cors = require('cors')
 const { PORT } = require('./config/variables.config')
 const onYourNetwork = require('./config/onYourNetwork.config')
-const { getAllTokensId, commit } = require('./lib/client')
+const {
+  getAllTokensId,
+  commit,
+  queryContract,
+  executeContract,
+} = require('./lib/client')
+const { QUERY, EXECUTE } = require('./constant')
 
 const app = express()
 
@@ -16,10 +22,28 @@ app.get('/', (req, res) => {
   res.json({ message: 'Server Work' })
 })
 
+app.post('/handle-bot-msg', async (req, res, next) => {
+  try {
+    const { type } = req.body
+    if (type === QUERY) {
+      const data = await queryContract()
+      return res.json({ data })
+    } else if (type === EXECUTE) {
+      const data = await executeContract()
+      return res.json({
+        status: 'success',
+        transactionHash: data.transactionHash,
+      })
+    }
+  } catch (err) {
+    next(err)
+  }
+})
+
 app.get('/get-all-tokens-id', async (req, res, next) => {
   try {
     const data = await getAllTokensId()
-    res.json({ message: 'Get all tokens id', data })
+    res.json({ data })
   } catch (err) {
     next(err)
   }

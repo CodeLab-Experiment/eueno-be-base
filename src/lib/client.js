@@ -76,4 +76,4 @@ const commit = async () => {
   )
 }
 
-module.exports = { getAllTokensId, commit }
+module.exports = { queryContract, executeContract, getAllTokensId, commit }
