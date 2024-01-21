@@ -44,7 +44,7 @@ const executeContract = async (
     RPC_ENDPOINT,
     wallet,
     {
-      gasPrice: GasPrice.fromString('0.025orai'),
+      gasPrice: GasPrice.fromString('0.002orai'),
       prefix,
     },
   )
