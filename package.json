@@ -1,0 +1,29 @@
+{
+  "name": "weminal-be",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node src/index.js",
+    "dev": "nodemon --exec babel-node src/index.js",
+    "dev-test": "nodemon src/index.js",
+    "build": "npx babel src --out-file build/index.js --minified --presets @babel/preset-env"
+  },
+  "keywords": [],
+  "author": "weminal",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/node": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@oraichain/cosmosjs": "^0.1.10",
+    "cors": "^2.8.5",
+    "cosmwasm": "^1.1.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "nodemon": "^3.0.3"
+  }
+}
